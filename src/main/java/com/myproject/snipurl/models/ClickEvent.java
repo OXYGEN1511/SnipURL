@@ -1,9 +1,6 @@
 package com.myproject.snipurl.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 
@@ -20,6 +17,9 @@ public class ClickEvent {
 
     private LocalDateTime clickDate;
 
+    @ManyToOne
+    @JoinColumn(name = "url_mapping_id")
+    private UrlMapping urlMapping;
 
 
 }
