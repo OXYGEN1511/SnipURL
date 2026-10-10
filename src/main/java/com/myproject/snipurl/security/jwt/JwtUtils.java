@@ -1,10 +1,9 @@
-package com.myproject.snipurl.security;
+package com.myproject.snipurl.security.jwt;
 
 import com.myproject.snipurl.services.UserDetailImpl;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
