@@ -5,6 +5,7 @@ import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import jakarta.servlet.http.HttpServletRequest;
+import org.jspecify.annotations.NonNull;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import io.jsonwebtoken.Jwts;
@@ -23,7 +24,7 @@ public class JwtUtils {
     @Value("${jwt.expiration}")
     private int  jwtExpiration;
 
-    public String getJWTFromHeader(HttpServletRequest request){
+    public String getJWTFromHeader(@NonNull HttpServletRequest request){
         String token = request.getHeader("Authorization");
         if(token !=null && token.startsWith("Bearer ")){
             return token.substring(7);
