@@ -30,13 +30,13 @@ public class UserDetailImpl implements UserDetails {
         this.authorities = authorities;
     }
 
-    public static UserDetailImpl build(SnipUser user){
+    public static UserDetailImpl build(SnipUser user) {
         GrantedAuthority authority = new SimpleGrantedAuthority(user.getRole());
         return new UserDetailImpl(
                 user.getId(),
                 user.getUsername(),
-                user.getPassword(),
-                user.getEmail(),
+                user.getEmail(),      // email third
+                user.getPassword(),   // password fourth
                 Collections.singletonList(authority)
         );
     }

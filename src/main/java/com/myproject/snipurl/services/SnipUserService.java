@@ -29,13 +29,17 @@ public class SnipUserService {
         return userRepository.save(user);
     }
 
-    public JwtAuthenticationResponse authenticateUser(LoginRequest dto){
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(dto.getUsername(),dto.getPassword()));
+    public JwtAuthenticationResponse authenticateUser(LoginRequest loginRequest) {
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(loginRequest.getUsername(),
+                        loginRequest.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        UserDetailImpl userDetail =(UserDetailImpl) authentication.getPrincipal();
-        String jwt = jwtUtils.generateToken(userDetail);
+        UserDetailImpl userDetails = (UserDetailImpl) authentication.getPrincipal();
+        String jwt = jwtUtils.generateToken(userDetails);
         return new JwtAuthenticationResponse(jwt);
     }
+
+
     public SnipUser findByUsername(String name) {
         return userRepository.findByUsername(name).orElseThrow(
                 () -> new UsernameNotFoundException("User not found with username: " + name));
