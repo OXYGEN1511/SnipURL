@@ -31,4 +31,8 @@ public class UrlMapping {
     @JoinColumn(name = "url_mapping")
     private List<ClickEvent> clickEvents;
 
+    // Soft delete flag
+    @Column(nullable = false)
+    private boolean deleted = false;
+
 }
